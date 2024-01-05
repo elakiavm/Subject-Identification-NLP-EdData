@@ -1,0 +1,120 @@
+test_cases = [
+    """
+    (I) Bihar – 1264
+      101  ENGLISH COMM.  071  020  091 NINETYONE  A2
+      069  020  089 EIGHTYNINE  A2
+      085  HINDI COURSE-B  020  020  040  FORTY D1
+      041  MATHEMATICS  039  020  059 FIFTYNINE  B2
+      086  SCIENCE  073  020  093 NINETY THREE  A1
+      087  SOCIAL SCIENCE
+    """,
+    """
+    (2) Delhi – 12200
+      020  086  EIGHTY SIX A2
+      184 ENGLISHLNG&LIT.  066
+      002  HINDI COURSE-A  075  020  095 NINETY FIVE  A1
+      041  MATHEMATICS STANDARD 079  020  099  NINETY NINE  A1
+      020  095  NINETY FIVE A1
+      086 SCIENCE-THEORY  075
+      075 NINETY FIVE  A1
+      087 SOCIAL SCIENCE  020  095
+    """,
+`    """
+    (3) Delhi – 12272
+      184 ENGLISHLNG&LIT.  061  019  080  EIGHTY  B2
+      085  HINDICOURSE-B  049  020  069  SIXTYNINE  C2
+      041  MATHEMATICSSTANDARD  073  020  093  NINETYTHREE  A1
+      0B6  SCIENCE-THEORY  059  020  079  SEVENTY NINE  A2
+      087  SOCIALSCIENCE  054  019  073  SEVENTYTHREE  C1
+    """,`
+    """
+    (4) Delhi – 12373
+      184  ENGLISHLNG&LIT. 039  020  059  FIFTY NINE  D1
+      002  HINDI COURSE-A 059  020  079  SEVENTY NINE  B2
+      041  MATHEMATICS STANDARD  070 020  090  NINETY  A2
+      086  SCIENCE-THEORY  061 020  081  EIGHTY ONE  A2
+      087  SOCIAL SCIENCE 060  020  080  EIGHTY  B2
+      ADDITIONAL SUBJECT
+      402  INFORMATIONTECHNOLOGY 047  050  097  NINETY SEVEN  A1
+    """,
+    """
+    (5) Gujarat – 12523
+      中  CUJAAATI FL 25  078  SEVEN EIOHT
+      10  SOCIALSCIENCE  53 2S  O70  SEVEN ELGHT
+      SEIEMCL  TECHNO  48 76  OT4  SEVEH TOUR
+      1E  PATHEHATICE 57  3  EIGHT ZERD
+      店  ENOLISH SL 45  25  070  SEVEN ZEHO
+      BANSKRIT BL  4  26  075  SEVEN FIVE  中
+    """,
+    """
+    (6) Gujarat – 121663
+      083  EIGHT THREE A2
+      02 HINDI FL  66  17  A2
+      10  SOCIAL SCIENCE  66 19  085  EIGHT FIVE
+      EIGHT SIX A2
+      11  SCIENCE 68  18  086
+      089  EIGHT NINE A2
+      12  MATHEMATICS 70  19  B1
+      13  GUJARATI SL  56  17 073  SEVEN THREE
+      60  18  078  SEVEN EIGHT B1
+      16  ENGLISH SL
+    """,
+    """
+    (7) Haryana – 12132
+      HINDI 048  33  100  C  03
+      2  ENGLISH  056 33  100  B  06
+      3  MATHEMATICS  044  33 100  C+  04
+      4  SOCIAL SCIENCE  043 33  100  C  03
+      062  33  100 B-  05
+      5  SCIENCE
+      6  SANSKRIT 050  33  100  C+  04
+    """,
+    """
+    (8) HP – 12312
+      》 Erglish  98*  100
+      12.  Mathematcs  51*  100
+      3. Hindi  83  100
+      Social 5clence [His.Civ.Geog.)  91*  100
+      4
+      Sriente & Technology  W/P 67/25  92*  100
+      5  (Phy. Chem. Life Scl.)
+      Sanskrit 95*  100
+      6.
+      Computer Stience (Elective)  W/P 47/50 97+  100
+      7.
+    """,
+    """
+    (9) HP – 12618
+      1  English"  85*  100
+      2.  Mathematics 100*  100
+      3. Hindi  98*  100
+      4 Social Science(His.Civ.Geog.)  98*  100
+      Science&Technology  (Phy.Chem.Life Sci.)  W/P73/25  98*  100
+      6. Sanskrit  83#  100
+      7.  Art(Elective)  W/P65/35  100*  100
+    """,
+    """
+    (10) HP – 121426
+      1.  English  47  100
+      Mathematics  60  100
+      3.  Hindi  50  100
+      Social Science (His.Civ.Geog.)  43  100
+      4.
+      Science&Technology  W/P35/15  50  100
+      5.  (Phy.Chem.Life Sci.)
+      6. Sanskrit  60  100
+      7.  Computer Science(Elective) W/P37/47  84*  100
+    """,
+    """
+    (11) HP – 121757
+      1.  English  73  100
+      2  Mathematics  53  100
+      3.  Hindi  56  100
+      4. Social Science(His.Civ.Geog.)  72  100
+      Science & Technology  W/P36/24
+      5.  (Phy.Chem.Life Sci.)  60  100
+      6.  Sanskrit  78*  100
+      7. Art(Elective)  W/P53/34  87*  100
+    """
+    # Add more test cases as needed
+]
