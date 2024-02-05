@@ -76,25 +76,56 @@ def find_language_subjects(text, language_subjects):
 
     return list(identified_subjects)
 
+# def process_test_cases(test_cases, primary_subjects, language_subjects):
+#     for i, test_case in enumerate(test_cases, start=1):
+#         print(f"\nProcessing Test Case {i}:")
+        
+#         # Process the current test case
+#         identified_primary_subjects = find_primary_subject(test_case, primary_subjects)
+#         identified_language_subjects = find_language_subjects(test_case, language_subjects)
+
+#         # Display results only if subjects are identified
+#         if identified_primary_subjects:
+#             print("Primary Subjects:")
+#             for subject in identified_primary_subjects:
+#                 print(subject)
+
+#         if identified_language_subjects:
+#             print("\nLanguage Subjects:")
+#             for subject in identified_language_subjects:
+#                 print(subject)
 def process_test_cases(test_cases, primary_subjects, language_subjects):
     for i, test_case in enumerate(test_cases, start=1):
-        print(f"\nProcessing Test Case {i}:")
-        
-        # Process the current test case
-        identified_primary_subjects = find_primary_subject(test_case, primary_subjects)
-        identified_language_subjects = find_language_subjects(test_case, language_subjects)
+        processed_lines = []
+        lines = test_case.splitlines()
 
-        # Display results only if subjects are identified
-        if identified_primary_subjects:
-            print("Primary Subjects:")
-            for subject in identified_primary_subjects:
-                print(subject)
+        for line in lines:
+            words = line.split()
+            corrected_words = []
 
-        if identified_language_subjects:
-            print("\nLanguage Subjects:")
-            for subject in identified_language_subjects:
-                print(subject)
+            for word in words:
+                corrected_word = word
 
+                # Check for primary subjects
+                for primary_subject in primary_subjects:
+                    if edit_distance(word, primary_subject) <= 2:  # Adjust threshold if needed
+                        corrected_word = primary_subject
+                        break
+
+                # Check for language subjects
+                if corrected_word == word:
+                    for language_subject in language_subjects:
+                        if edit_distance(word, language_subject) <= 2:  # Adjust threshold if needed
+                            corrected_word = language_subject
+                            break
+
+                corrected_words.append(corrected_word)
+
+            processed_line = " ".join(corrected_words)
+            processed_lines.append(processed_line)
+
+        output = "\n".join(processed_lines)
+        print(f"\nProcessing Test Case {i}:\n{output}")
 # Test cases as an array
 test_cases_array = [
     """
@@ -114,3 +145,5 @@ language_subjects_array = ["ENGLISH","HINDI COURSE", "HINDI", "SANSKRIT", "FRENC
 
 # Process test cases
 process_test_cases(test_cases_array, primary_subjects_array, language_subjects_array)
+
+

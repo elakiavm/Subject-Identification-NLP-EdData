@@ -21,12 +21,13 @@ def correct_spacing(input_text):
     corrected_text = ' '.join(corrected_text.split())
     
     return corrected_text
+
 def calculate_jaccard_similarity(set1, set2):
     intersection_size = len(set1.intersection(set2))
     union_size = len(set1.union(set2))
     return 1.0 - (intersection_size / union_size) if union_size != 0 else 0.0
 
-def find_primary_subject(text, primary_subjects):
+def find_primary_subject_and_replace(text, primary_subjects):
     text_without_numbers = remove_numbers(text)
     corrected_text = correct_spacing(text_without_numbers.upper())  # Convert to uppercase
     
@@ -52,13 +53,17 @@ def find_primary_subject(text, primary_subjects):
                 identified_primary_subjects.add(primary_subject)
                 break  # Break the inner loop to avoid rechecking for the same subject
 
-    return list(identified_primary_subjects)
+    # Replace identified subjects in the original text
+    for subject in identified_primary_subjects:
+        text = re.sub(r'\b' + re.escape(subject.lower()) + r'\b', subject, text, flags=re.IGNORECASE)
+
+    return text, list(identified_primary_subjects)
 
 def calculate_dynamic_threshold(subject, word):
     max_length = max(len(subject), len(word))
     return 1.0 - (edit_distance(subject, word) / max_length)
 
-def find_language_subjects(text, language_subjects):
+def find_language_subjects_and_replace(text, language_subjects):
     text_without_numbers = remove_numbers(text)
     corrected_text = correct_spacing(text_without_numbers.upper())  # Convert to uppercase
     
@@ -72,28 +77,40 @@ def find_language_subjects(text, language_subjects):
             if threshold > 0.5:  # Adjust the threshold for better accuracy
                 identified_subjects.add(primary_subject)
     
-        identified_subjects = {"HINDI" if subject == "HINDI COURSE" else subject for subject in identified_subjects}
+    identified_subjects = {"HINDI" if subject == "HINDI COURSE" else subject for subject in identified_subjects}
 
-    return list(identified_subjects)
+    # Replace identified subjects in the original text
+    for subject in identified_subjects:
+        text = re.sub(r'\b' + re.escape(subject.lower()) + r'\b', subject, text, flags=re.IGNORECASE)
+
+    return text, list(identified_subjects)
 
 def process_test_cases(test_cases, primary_subjects, language_subjects):
     for i, test_case in enumerate(test_cases, start=1):
         print(f"\nProcessing Test Case {i}:")
-        
-        # Process the current test case
-        identified_primary_subjects = find_primary_subject(test_case, primary_subjects)
-        identified_language_subjects = find_language_subjects(test_case, language_subjects)
 
-        # Display results only if subjects are identified
+        # Process the current test case for primary subjects
+        test_case, identified_primary_subjects = find_primary_subject_and_replace(test_case, primary_subjects)
+
+        # Display results only if primary subjects are identified
         if identified_primary_subjects:
             print("Primary Subjects:")
             for subject in identified_primary_subjects:
                 print(subject)
 
+        # Process the current test case for language subjects
+        test_case, identified_language_subjects = find_language_subjects_and_replace(test_case, language_subjects)
+
+        # Display results only if language subjects are identified
         if identified_language_subjects:
             print("\nLanguage Subjects:")
             for subject in identified_language_subjects:
                 print(subject)
+
+        # Display the corrected test case
+        print("\nCorrected Test Case:")
+        print(test_case)
+        print('\n' + '='*50 + '\n')  # Separate test cases for better visibility
 
 # Test cases as an array
 test_cases_array = [
@@ -105,12 +122,10 @@ test_cases_array = [
       0B6  SCIENCE-THEORY  059  020  079  SEVENTY NINE  A2
       087  SOCIALSCIENCE  054  019  073  SEVENTYTHREE  C1
     """,
+    # Add more test cases as needed
 ]
-
 
 # Define primary subjects and language subjects
 primary_subjects_array = ["MATHEMATICS", "SCIENCE", "SOCIAL SCIENCE"]
-language_subjects_array = ["ENGLISH","HINDI COURSE", "HINDI", "SANSKRIT", "FRENCH", "GERMAN", "SPANISH", "ARABIC", "TAMIL", "TELUGU", "MALAYALAM", "ODIA", "ASSAMESE", "BENGALI", "GUJARATI", "KANNADA", "MARATHI", "PUNJABI", "URDU"]
-
-# Process test cases
+language_subjects_array = ["ENGLISH","HINDI COURSE", "HINDI", "SANSKRIT", "FRENCH", "GERMAN", "SPANISH", "ARABIC", "TAMIL", "TELUGU", "MALAYALAM", "ODIA", "ASSAMESE", "BENGALI", "GUJARAT"]
 process_test_cases(test_cases_array, primary_subjects_array, language_subjects_array)

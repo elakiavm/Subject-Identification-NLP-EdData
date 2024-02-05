@@ -76,25 +76,69 @@ def find_language_subjects(text, language_subjects):
 
     return list(identified_subjects)
 
+# def process_test_cases(test_cases, primary_subjects, language_subjects):
+#     for i, test_case in enumerate(test_cases, start=1):
+#         print(f"\nProcessing Test Case {i}:")
+        
+#         # Process the current test case
+#         identified_primary_subjects = find_primary_subject(test_case, primary_subjects)
+#         identified_language_subjects = find_language_subjects(test_case, language_subjects)
+
+#         # Display results only if subjects are identified
+#         if identified_primary_subjects:
+#             print("Primary Subjects:")
+#             for subject in identified_primary_subjects:
+#                 print(subject)
+
+#         if identified_language_subjects:
+#             print("\nLanguage Subjects:")
+#             for subject in identified_language_subjects:
+#                 print(subject)
+
+# def replace_subjects(text, identified_subjects):
+#     for subject in identified_subjects:
+#         print(subject)
+#         print(identified_subjects)
+#         text = re.sub(r"\b{}\b".format(subject), subject.upper(), text, flags=re.IGNORECASE)
+#     return text
+
+# def process_test_cases(test_cases, primary_subjects, language_subjects):
+#     for i, test_case in enumerate(test_cases, start=1):
+#         print(f"\nProcessing Test Case {i}:")
+
+#         # Identify subjects
+#         identified_primary_subjects = find_primary_subject(test_case, primary_subjects)
+#         identified_language_subjects = find_language_subjects(test_case, language_subjects)
+
+#         # Replace subjects in the text
+#         replaced_text = replace_subjects(test_case, identified_primary_subjects + identified_language_subjects)
+
+#         # Display the replaced text
+#         print("Replaced Text:\n", replaced_text)
 def process_test_cases(test_cases, primary_subjects, language_subjects):
     for i, test_case in enumerate(test_cases, start=1):
         print(f"\nProcessing Test Case {i}:")
-        
-        # Process the current test case
+
+        # Tokenize the text
+        tokens = nltk.word_tokenize(test_case)
+        print(tokens)
+
+        # Identify subjects
         identified_primary_subjects = find_primary_subject(test_case, primary_subjects)
         identified_language_subjects = find_language_subjects(test_case, language_subjects)
+        identified_subjects = identified_primary_subjects + identified_language_subjects
 
-        # Display results only if subjects are identified
-        if identified_primary_subjects:
-            print("Primary Subjects:")
-            for subject in identified_primary_subjects:
-                print(subject)
+        # Replace subjects in the token list
+        for j, token in enumerate(tokens):
+            for subject in identified_subjects:
+                if token.lower() == subject.lower():
+                    tokens[j] = subject.upper()  # Replace with uppercase subject
 
-        if identified_language_subjects:
-            print("\nLanguage Subjects:")
-            for subject in identified_language_subjects:
-                print(subject)
+        # Reconstruct the text with numbers
+        replaced_text = " ".join([token if not token.isdigit() else f" {token} " for token in tokens])
 
+        # Display the replaced text
+        print("Replaced Text:\n", replaced_text)
 # Test cases as an array
 test_cases_array = [
     """
