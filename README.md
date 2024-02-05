@@ -1,5 +1,6 @@
 # Subject-Identification-NLP-EdData
-<<<<<<< HEAD
+
+Run app.py file
 
 **Title: Automated Subject Identification in Educational Test Cases**
 
@@ -227,5 +228,3 @@ This Python code, available on [GitHub](link-to-github-repository), is designed 
 
 This code provides a foundation for subject identification but may require further refinement based on specific use cases and input variations.
 =======
-Run final.py 
->>>>>>> 0cfddaaff406d1b80a73671f08628b62688e3bfc
